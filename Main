@@ -1,3 +1,11 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+C#, VB, Perl, Swift, Prolog, Javascript, Pascal, HTML, CSS, JS
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include<conio.h>
@@ -7,9 +15,11 @@ int alterarMoradores();
 int exibirMenu();
 int consultarMoradorAp();
 int imprimirMoradores();
+int somarMatrizes();
+int somarMatrizesPorAndar();
 
 int matriz[20][20],i, j;
-int num, num2, newValue, acao;
+int num, num2, newValue, acao, soma, andar;
   
 int main (void){
     printf("Preencha os apartamentos com o numero de moradores:");
@@ -23,18 +33,25 @@ int exibirMenu(){
     printf("(1) - Alterar numero de moradores\n");
     printf("(2) - Consultar o numero de moradores de uma unidade\n");
     printf("(3) - Imprimir o número de moradores de cada unidade\n");
-    
-    printf("Digite o numero da ação desejada:");
+    printf("(4) - Ver numero total de moradores no predio\n");
+    printf("(5) - Ver numero de moradores por andar\n");
+    printf("Digite o numero da ação desejada:\n");
     scanf("%d", &acao);
     
     if(acao == 1){
         alterarMoradores();
         exibirMenu();
-    }if(acao == 2){
+    }else if(acao == 2){
         consultarMoradorAp();
         exibirMenu();
-    }if(acao == 3){
+    }else if(acao == 3){
         imprimirMoradores();
+        exibirMenu();
+    }else if(acao == 4){
+        somarMatrizes();
+        exibirMenu();
+    }else if(acao == 5){
+        somarMatrizesPorAndar();
         exibirMenu();
     }else{
         exibirMenu();
@@ -44,16 +61,17 @@ int exibirMenu(){
 int preencherMatriz(){
 
   
-  for ( i=0; i<8; i++ )
-    for ( j=0; j<8; j++ )
+  for ( i=0; i<=8; i++ )
+    for ( j=0; j<=8; j++ )
     {
+      
+      matriz[ i ][ j ] = 5;
       printf ("\nApartamento[%d][%d] = ", i, j);
-      scanf ("%d", &matriz[ i ][ j ]);
     }
 
   
-  for ( i=0; i<8; i++ )
-    for ( j=0; j<8; j++ )
+  for ( i=0; i<=8; i++ )
+    for ( j=0; j<=8; j++ )
     {
       printf ("\nApartamento[%d][%d] = %d\n", i, j,matriz[ i ][ j ]);
     }
@@ -88,11 +106,35 @@ int consultarMoradorAp(){
 }
 
 int imprimirMoradores(){
-    for ( i=0; i<8; i++ )
-    for ( j=0; j<8; j++ )
+    for ( i=0; i<=8; i++ )
+    for ( j=0; j<=8; j++ )
     {
       printf ("\nApartamento[%d][%d] = %d\n", i, j,matriz[ i ][ j ]);
     }
     system("pause");
 }
 
+int somarMatrizes(){
+    int soma = 0;
+        for(i=1;i<=8;i++){
+        for(j=1;j<=8;j++){
+            soma += matriz[i][j];
+            }
+        }
+    printf("a quantidade de moradores eh: %d",soma);
+}
+
+int somarMatrizesPorAndar(){
+    int soma = 0;
+    printf("Digite o andar que deseja consultar:");
+    scanf("%d",&andar);
+    
+        for(i=1;i<=8;i++){
+        for(j=1;j<=8;j++){
+            if(i == andar){
+                 soma += matriz[i][j];
+            }
+            }
+            printf("a quantidade de moradores pelo andar %d eh: %d",andar,soma);
+        }
+}
