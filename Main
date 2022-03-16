@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<conio.h>
+
+int preencherMatriz();
+int alterarMoradores();
+int exibirMenu();
+int consultarMoradorAp();
+int imprimirMoradores();
+
+int matriz[20][20],i, j;
+int num, num2, newValue, acao;
+  
+int main (void){
+    printf("Preencha os apartamentos com o numero de moradores:");
+    preencherMatriz();
+    exibirMenu();
+    
+}
+
+int exibirMenu(){
+    printf("----------Menu-----------\n");
+    printf("(1) - Alterar numero de moradores\n");
+    printf("(2) - Consultar o numero de moradores de uma unidade\n");
+    printf("(3) - Imprimir o número de moradores de cada unidade\n");
+    
+    printf("Digite o numero da ação desejada:");
+    scanf("%d", &acao);
+    
+    if(acao == 1){
+        alterarMoradores();
+        exibirMenu();
+    }if(acao == 2){
+        consultarMoradorAp();
+        exibirMenu();
+    }if(acao == 3){
+        imprimirMoradores();
+        exibirMenu();
+    }else{
+        exibirMenu();
+    }
+}
+
+int preencherMatriz(){
+
+  
+  for ( i=0; i<8; i++ )
+    for ( j=0; j<8; j++ )
+    {
+      printf ("\nApartamento[%d][%d] = ", i, j);
+      scanf ("%d", &matriz[ i ][ j ]);
+    }
+
+  
+  for ( i=0; i<8; i++ )
+    for ( j=0; j<8; j++ )
+    {
+      printf ("\nApartamento[%d][%d] = %d\n", i, j,matriz[ i ][ j ]);
+    }
+  
+  getch();
+  
+  
+  return(0);
+  
+}
+
+int alterarMoradores(){
+    
+    printf("Digite o primeiro indice da matriz:");
+    scanf("%d", &num);
+    printf("Digite o segundo indice da matriz:");
+    scanf("%d", &num2);
+    printf("Digite o valor que voce deseja colocar:");
+    scanf("%d", &newValue);
+    
+    matriz[num][num2] = newValue;
+    printf("A matriz [%d][%d] foi alterada para o numero de %d moradores",num,num2,matriz[num][num2]);
+    
+}
+
+int consultarMoradorAp(){
+    printf("Digite o primeiro indice da matriz:");
+    scanf("%d", &num);
+    printf("Digite o segundo indice da matriz:");
+    scanf("%d", &num2);
+    printf("A quantidade de moradores da matriz que voce solicitou eh: %d", matriz[num][num2]);
+}
+
+int imprimirMoradores(){
+    for ( i=0; i<8; i++ )
+    for ( j=0; j<8; j++ )
+    {
+      printf ("\nApartamento[%d][%d] = %d\n", i, j,matriz[ i ][ j ]);
+    }
+    system("pause");
+}
+
